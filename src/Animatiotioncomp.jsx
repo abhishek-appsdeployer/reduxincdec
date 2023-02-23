@@ -1,6 +1,24 @@
 import React, { useRef } from 'react';
-import { View, TouchableOpacity, Image,Text, Animated } from 'react-native';
+import { View, TouchableOpacity, Image,Text, Animated,FlatList } from 'react-native';
 
+const data = [
+    { id: '1', name: 'India' },
+    { id: '2', name: 'Pakistan' },
+    { id: '3', name: 'China' },
+    { id: '4', name: 'Nepal' },
+    { id: '5', name: 'Bhutan' },
+    { id: '5', name: 'Bangladesh' },
+    { id: '5', name: 'Mayanmar' },
+    { id: '5', name: 'Afghanistan' },
+  ];
+  
+  const renderItem = ({ item }) => {
+    return (
+      <Text style={{textAlign: 'center', color: 'red'}}>{item.name}</Text>
+    );
+  };
+  
+  const keyExtractor = (item) => item.id;
 const Animationcomp = () => {
   const rotateAnim = useRef(new Animated.Value(0)).current;
 
@@ -35,6 +53,14 @@ const Animationcomp = () => {
       <TouchableOpacity onPress={startRotateAnimation} style={{flexDirection:"row",justifyContent:"center",marginTop:50}}>
         <Text style={{textAlign:"center",width:200,backgroundColor:"pink",fontSize:25,borderRadius:20}}>Rotate</Text>
       </TouchableOpacity>
+    <View style={{alignItems:"center",color:"red",paddingTop:20}}>
+    <Text style={{fontSize:20,fontWeight:"bold"}}>India Neighbour using FlatList</Text>
+      <FlatList
+      
+      data={data}
+      renderItem={renderItem}
+      keyExtractor={keyExtractor}
+    /></View>
     </View>
   );
 };
